@@ -241,7 +241,7 @@ Item {
         id: mainColumn
         anchors {
             top: searching ? searchField.bottom : mainLabelGrid.bottom
-            leftMargin: units.largeSpacing * 2
+            leftMargin: units.largeSpacing * (searching ? 1.6 : 3)
             rightMargin: units.largeSpacing
             topMargin: units.largeSpacing
             left: parent.left
@@ -262,7 +262,7 @@ Item {
             model: globalFavorites
             width: parent.width
             height: tileSide * 3
-            cellWidth: tileSide
+            cellWidth: tileSide * 0.92
             cellHeight: tileSide
             square: true
             dropEnabled: true
@@ -289,9 +289,6 @@ Item {
             width: parent.width
             model: rootModel.modelForRow(2)
             opacity: showAllApps && !searching ? 1.0 : 0.0
-            anchors {
-                leftMargin: units.largeSpacing * 2;
-            }
             onOpacityChanged: {
                 if (opacity == 1.0) {
                     mainColumn.visibleGrid = allAppsGrid;
@@ -304,9 +301,6 @@ Item {
             anchors.fill: parent
             z: (opacity == 1.0) ? 1 : 0
             enabled: (opacity == 1.0) ? 1 : 0
-            anchors {
-                rightMargin: units.largeSpacing * 2;
-            }
             width: parent.width
             model: runnerModel
             opacity: searching ? 1.0 : 0.0
